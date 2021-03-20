@@ -2,6 +2,7 @@
     "scripts":{
         "start": "deno run -A --unstable main.ts",
         "cache": "deno cache deps.ts",
-        "compile": "deno compile -Ar --unstable --target x86_64-unknown-linux-gnu main.ts -o main"
+        "compile": "deno compile -Ar --unstable --target x86_64-unknown-linux-gnu main.ts -o main",
+        "install": "deno install -Af --unstable --name cli-oauth2 main.ts"
     }
 }
