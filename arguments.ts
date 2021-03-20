@@ -7,7 +7,7 @@ export const parsedArgsGetType = t.Record({
     _: t.Tuple(t.Literal("get")),
     c: t.String,
     callback: t.String,
-    callbackUrl: t.String,
+    callbackURL: t.String,
     port: t.Number,
     p: t.Number,
     scope: t.String,
@@ -47,7 +47,7 @@ export function parseArgs(args:string[]):t.Static<typeof parsedArgsType>{
                 describe: "Base URL for OAuth2 endpoints",
                 type: "string"
             })
-            .option("callback-url",{
+            .option("callbackURL",{
                 alias: ["c","callback"],
                 describe: "The Callback URL",
                 type: "string",

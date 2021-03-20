@@ -9,7 +9,9 @@ const args = parseArgs(Deno.args);
 if(args._[0] == "get"){
     assert(parsedArgsGetType.guard(args),"Unexpected args object type");
     console.log(JSON.stringify(await getAccess(args,await getAuth(args)))); 
-} else {
+} else if(args._[0] == "refresh"){
     assert(parsedArgsRefreshType.guard(args),"Unexpected args object type");
     console.log(JSON.stringify(await refresh(args)));
+} else {
+    throw new Error(`Unknown Command: ${args._[0]}`);
 }

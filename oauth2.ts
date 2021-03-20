@@ -19,7 +19,7 @@ export async function getAuth(input:t.Static<typeof parsedArgsGetType>):Promise<
     const authSearch = new URLSearchParams();
     authSearch.append("client_id",input.clientId);
     authSearch.append("response_type","code");
-    authSearch.append("redirect_uri",input.callbackUrl);
+    authSearch.append("redirect_uri",input.callbackURL);
     authSearch.append("state",randomStateString);
     authSearch.append("scope",input.scope);
     authSearch.append("show_dialog","false");
@@ -90,7 +90,7 @@ export async function getAccess(input:t.Static<typeof parsedArgsGetType>,authCod
         body: new URLSearchParams({
             grant_type: "authorization_code",
             code: authCode,
-            redirect_uri: input.callbackUrl
+            redirect_uri: input.callbackURL
         }).toString()
     });
     if(accessReq.ok){
