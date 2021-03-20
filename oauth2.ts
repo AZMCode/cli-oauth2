@@ -33,27 +33,31 @@ export async function getAuth(input:t.Static<typeof parsedArgsGetType>):Promise<
     let authCode = "";
     
     for await (const event of Repeater.merge([server,userBrowserPromise])){
-        if(authCode.length > 0){
-            server.close();
-            userBrowser.exit();
-            break;
-        }
         if(event instanceof ServerRequest){
             if(event.url.startsWith("/?")){
                 const query = new URLSearchParams(event.url.slice(2));
                 if(query.has("code")){
+                    await event.respond({body: "Window should close soon"});
+                    await event.finalize();
                     const code = query.get("code");
                     assert(code !== null);
                     authCode = code;
+                    server.close();
+                    userBrowser.exit();
+                    break;
                 }
             }
-            event.respond({body: "Window should close soon"});
-            event.finalize();
         } else {
             server.close();
         }
     }
-    return authCode
+    if(authCode === ""){
+        const errObj = {
+            error: "User cancelled login"
+        }
+        console.log(JSON.stringify(errObj));
+    }
+    return authCode;
 }
 
 
