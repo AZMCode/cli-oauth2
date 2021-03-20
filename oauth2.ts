@@ -40,8 +40,7 @@ export async function getAuth(input:t.Static<typeof parsedArgsGetType>):Promise<
                     await event.respond({body: "Window should close soon"});
                     await event.finalize();
                     const code = query.get("code");
-                    assert(code !== null);
-                    authCode = code;
+                    authCode = code??"";
                     server.close();
                     userBrowser.exit();
                     break;
