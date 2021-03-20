@@ -47,15 +47,7 @@ export async function getAuth(input:t.Static<typeof parsedArgsGetType>):Promise<
                     authCode = code;
                 }
             }
-            event.respond({body: `
-            <html>
-                <head>
-                    <meta http-equiv="Refresh" content="0" URL="${authURL}">
-                </head>
-                <body>
-                </body>
-            </html>
-            `});
+            event.respond({body: "Window should close soon"});
             event.finalize();
         } else {
             server.close();
