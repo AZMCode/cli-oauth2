@@ -6,7 +6,7 @@ import { assert } from "./deps.ts";
 import { runtypes as t } from "./deps.ts";
 
 
-export async function getAuth(input:t.Static<typeof parsedArgsGetType>):Promise<string>{
+export async function get(input:t.Static<typeof parsedArgsGetType>):Promise<string>{
     const authURL = new URL("authorize",input.accountsURL);
 
     const randomState = crypto.getRandomValues(new Uint8Array(32));
