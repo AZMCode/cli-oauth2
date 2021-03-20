@@ -100,7 +100,8 @@ export function parseArgs(args:string[]):t.Static<typeof parsedArgsType>{
         "strip-aliases":        true
     })
     .help()
-    .version("0.0.1")
+    .version("0.0.2")
+    .scriptName("cli-oauth2")
     .strictCommands()
     .demandCommand(1)
     .parse();
